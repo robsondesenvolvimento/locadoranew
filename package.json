@@ -4,7 +4,8 @@
   "description": "Projeto de apresentação do curso de Node.Js Avançado.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start-dev": "NODE_ENV=dev nodemon src/index.js",
+    "start-prod": "NODE_ENV=prod nodemon src/index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,13 @@
   "bugs": {
     "url": "https://github.com/robsondesenvolvimento/locadoranew/issues"
   },
-  "homepage": "https://github.com/robsondesenvolvimento/locadoranew#readme"
+  "homepage": "https://github.com/robsondesenvolvimento/locadoranew#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.12",
+    "win-node-env": "^0.4.0"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "js-yaml": "^4.1.0"
+  }
 }
