@@ -1,6 +1,7 @@
 const express = require('express');
 const routing = require('../routers/router');
 const configuration = require('../config/configuration');
+const chalk = require('chalk');
 
 const restapi = () => {
 
@@ -11,7 +12,7 @@ const restapi = () => {
     app.use('/', routing);
 
     app.listen(port, () => {
-        console.log(`app listening at http://${host}:${port}/`);
+        console.log(chalk.bgBlueBright(chalk.black(`App listening at http://${host}:${port}/`)));
     })
 
 }
