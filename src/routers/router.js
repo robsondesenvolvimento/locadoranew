@@ -8,6 +8,7 @@ const asyncMiddleware = fn =>
   };
 
 // Cliente
-routing.get('/cliente', asyncMiddleware(clienteController.getTodos))
+routing.get('/cliente', asyncMiddleware(clienteController.getTodos));
+routing.post('/cliente/filtro', asyncMiddleware(clienteController.getCliente))
 
 module.exports = routing;
