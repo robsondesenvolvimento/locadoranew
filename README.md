@@ -18,5 +18,13 @@ $ npm install
 $ npm run start-dev
  ```
 
+ # Alternativa para instanciar um container da locadora.
+
+  ```shell
+$ docker build . -t locadora
+$ docker run -p 3000:3000 -d locadora
+ ```
+
  # References
  - > https://docs.mongodb.com/drivers/node/current/usage-examples/count/
+ - > https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
