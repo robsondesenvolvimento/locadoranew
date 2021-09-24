@@ -1,0 +1,28 @@
+{
+  "name": "locadora",
+  "version": "1.0.0",
+  "description": "Projeto de apresentação do curso de Node.Js Avançado.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/robsondesenvolvimento/locadoranew.git"
+  },
+  "author": "Robson Candido dos Santos Alves",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/robsondesenvolvimento/locadoranew/issues"
+  },
+  "homepage": "https://github.com/robsondesenvolvimento/locadoranew#readme",
+  "devDependencies": {
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "express": "^4.17.1",
+    "fs": "^0.0.1-security",
+    "js-yaml": "^4.1.0",
+    "mongodb": "^4.1.2"
+  }
+}
