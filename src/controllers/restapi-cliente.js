@@ -25,6 +25,18 @@ const clienteController = () => {
         }              
     }
 
+    clienteController.id = async (request, response, next) => {
+        try{
+            const id = request.params.id;
+
+            await clienteRepository.id(id, cliente => response.status(200).json(cliente));
+            //var texto = await Promise.resolve("TODOS - Cliente").catch(next);
+            
+        }catch(e){
+            next(e)
+        }              
+    }
+
     return clienteController;
 }
 

@@ -1,3 +1,4 @@
+const mongo = require('mongodb');
 const mongodbConn = require('../repository/context')();
 const chalk = require('chalk');
 
@@ -69,6 +70,29 @@ const clienteRepository = () => {
             };
 
             locate = await clienteCollection.findOne(cliente, options);
+            if (locate !== null){
+                console.log(chalk.bgGreenBright(chalk.black("Documento de cliente loalizado.")));
+                console.log(locate);
+                callback(locate);
+            }
+        });
+    }
+
+    controllerClienteRepository.id = async (id, callback) => {
+        await mongodbConn.conectar(async database => {
+            const clienteCollection = database.collection("cliente");
+
+            const options = {
+                // sort matched documents in descending order by rating
+                sort: { "nome": -1 },
+                // Include only the `title` and `imdb` fields in the returned document
+                //projection: { _id: 0, nome: 1, nascimento: 1 },
+            };
+
+            // 614dd2cb896c3942a842bd66
+            // 614dd2cb896c3942a842bd67
+            const mongoId = new mongo.ObjectId(id);
+            locate = await clienteCollection.findOne({"_id": mongoId}, options);
             if (locate !== null){
                 console.log(chalk.bgGreenBright(chalk.black("Documento de cliente loalizado.")));
                 console.log(locate);
