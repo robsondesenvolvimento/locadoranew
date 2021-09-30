@@ -29,3 +29,4 @@ $ docker run -p 3000:3000 -d locadora
  - > https://docs.mongodb.com/drivers/node/current/usage-examples/count/
  - > https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
  - > https://mongodb.github.io/node-mongodb-native/api-generated/collection.html
+ - > https://mongoosejs.com/docs/schematypes.html
