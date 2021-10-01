@@ -5,9 +5,26 @@ Apresentação do projeto de locadora para o curso de Node.Js Avançado.
 - > Pode ser alterado o usuário e senha no arquivo docker-compose.yml.
 - > O padrão é usuário root e senha 123456
 
+- > Crie o container com o arquivo docker-compose.yml
 ```shell
 $ cd mongodb
 $ docker-compose up -d
+$ docker exec -it mongodb-robson bash
+# mongo
+> use admin
+> db.createUser({user: "root", pwd: "root", roles:["root"]});
+> use locadora
+> db.createUser({user: "locadora", pwd: "locadora", roles:[{role: "readWrite", db: "locadora"}]});
+> ctrl^c
+#
+```
+- > Descomente a linha 13 #command: [--auth] no arquivo docker-compose.yml
+```shell
+$ docker-compose up -d
+$ docker exec -it mongodb-robson bash
+# mongo -u root -p root --authenticationDatabase admin
+> ctrl^c
+# mongo -u locadora -p locadora --authenticationDatabase locadora
 ```
 
 # Inicialização da aplicação.

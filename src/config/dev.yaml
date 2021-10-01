@@ -3,8 +3,8 @@ express:
   port: 3000
 
 database:
-  host: "cluster0.ja45d.mongodb.net"
+  host: "localhost"
   port: 27017
   username: "locadora"
-  password: "locadora^123456"
+  password: "locadora"
   namedb: "locadora"
