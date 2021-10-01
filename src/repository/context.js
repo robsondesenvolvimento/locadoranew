@@ -1,31 +1,18 @@
-const { MongoClient } = require("mongodb");
+const mongoose = require('mongoose');
 const configuration = require('../config/configuration');
 const chalk = require('chalk');
 
-const mongodbConn = () => {
+const { host } = configuration.database;
+const { port } = configuration.database;
+const { username } = configuration.database;
+const { password } = configuration.database;
+const { namedb } = configuration.database;
 
-    const { host } = configuration.database;
-    const { username } = configuration.database;
-    const { password } = configuration.database;
+const uri = `mongodb://${username}:${password}@${host}/${namedb}?retryWrites=true&w=majority`;
 
-    const uri = `mongodb://${username}:${password}@${host}:27017`;
-    const client = new MongoClient(uri);
+var conn = mongoose.connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
 
-    const controllerMongo = {};
-
-    controllerMongo.conectar = async (callback) => {
-      try {
-        await client.connect();
-        await client.db("admin").command({ ping: 1 });
-        console.log(chalk.bgYellowBright(chalk.black("Connected successfully to server")));
-        const database = client.db("locadora");
-        callback(database);
-      } catch {
-        await client.close();
-      }
-    }
-
-    return controllerMongo
-}
-
-module.exports = mongodbConn;
+module.exports = conn;
