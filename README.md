@@ -3,7 +3,7 @@ Apresentação do projeto de locadora para o curso de Node.Js Avançado.
 
 # Instanciando o banco de dados MongoDB no Docker
 - > Pode ser alterado o usuário e senha no arquivo docker-compose.yml.
-- > O padrão é usuário root e senha 123456
+- > O padrão é usuário localhost e senha localhost
 
 - > Crie o container com o arquivo docker-compose.yml
 ```shell
@@ -47,3 +47,5 @@ $ docker run -p 3000:3000 -d locadora
  - > https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
  - > https://mongodb.github.io/node-mongodb-native/api-generated/collection.html
  - > https://mongoosejs.com/docs/schematypes.html
+ - > https://github.com/auth0/node-jsonwebtoken
+ - > https://www.npmjs.com/package/object-hash
