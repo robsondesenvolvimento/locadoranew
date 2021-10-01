@@ -49,3 +49,4 @@ $ docker run -p 3000:3000 -d locadora
  - > https://mongoosejs.com/docs/schematypes.html
  - > https://github.com/auth0/node-jsonwebtoken
  - > https://www.npmjs.com/package/object-hash
+ - > https://expressjs.com/pt-br/guide/routing.html

@@ -51,6 +51,18 @@ const usuarioRepository = () => {
         }
     }
 
+    controllerUsuarioRepository.usuario = async (usuario, callback) => {
+        const user = await Usuario.findOne(usuario).exec();
+
+        if (user !== null) {
+            console.log(chalk.bgGreenBright(chalk.black("Usuário localizado.")));
+            callback(user);
+        }
+        else {
+            callback(null);
+        }
+    }
+
     return controllerUsuarioRepository;
 
 }
