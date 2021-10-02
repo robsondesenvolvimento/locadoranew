@@ -50,3 +50,4 @@ $ docker run -p 3000:3000 -d locadora
  - > https://github.com/auth0/node-jsonwebtoken
  - > https://www.npmjs.com/package/object-hash
  - > https://expressjs.com/pt-br/guide/routing.html
+ - > https://www.luiztools.com.br/post/autenticacao-json-web-token-jwt-em-nodejs/

@@ -13,19 +13,24 @@ const authenticationController = () => {
             await usuarioRepository.all(usuario => response.status(200).json(usuario));
         }catch(e){
             next(e)
-        }              
+        }            
     }
 
     authController.usuarioauth = async (req, res, next) => {
         try{
-            console.log(req.body);
-            var user = { username: "robson.alves", password: "MinhaSenha@2021"};
-            await usuarioRepository.usuario(user, usuario => res.status(200).json(usuario));
+            var user = req.body;
+            await usuarioRepository.usuario(user, usuario => {
+                if (usuario !== null)
+                    res.status(200).json(usuario);
+                else
+                    res.status(401).json({ statusCode: "ERR0001", message: "Acesso negado." });
+            });
+
             //var texto = await Promise.resolve(`corpo: ${req.body}`).catch(next);
             //await res.status(200).json(texto)
         }catch(e){
             next(e)
-        }              
+        }         
     }
 
     return authController;

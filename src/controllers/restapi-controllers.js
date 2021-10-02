@@ -6,6 +6,8 @@ const chalk = require('chalk');
 const restapi = () => {
 
     const app = express();
+    app.use(express.json());
+    
     const { host } = configuration.express;
     const { port } = configuration.express;
 

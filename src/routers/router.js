@@ -9,7 +9,6 @@ const asyncMiddleware = fn => (req, res, next) => {
 
 // Authentication
 routing.post('/login', asyncMiddleware(authenticationController.usuarioauth));
-routing.get('/login', asyncMiddleware(authenticationController.getTodos));
 
 // Cliente
 routing.get('/cliente', asyncMiddleware(clienteController.getTodos));
