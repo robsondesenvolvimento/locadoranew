@@ -159,6 +159,11 @@
   "resolved" "https://registry.npmjs.org/buffer-equal-constant-time/-/buffer-equal-constant-time-1.0.1.tgz"
   "version" "1.0.1"
 
+"Buffer@^0.0.0":
+  "integrity" "sha1-gs+OmGohCf9tHW8cQ25H0HEnrqQ="
+  "resolved" "https://registry.npmjs.org/Buffer/-/Buffer-0.0.0.tgz"
+  "version" "0.0.0"
+
 "buffer@^5.6.0":
   "integrity" "sha512-EHcyIPBQ4BSGlvjB16k5KgAJ27CIsHY/2JBmCRReo48y9rQ3MaUzWX3KVlBa4U7MyX02HdVj0K7C3WaB3ju7FQ=="
   "resolved" "https://registry.npmjs.org/buffer/-/buffer-5.7.1.tgz"

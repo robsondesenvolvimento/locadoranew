@@ -2,6 +2,7 @@ const routing = require('express').Router();
 const jwt = require('jsonwebtoken');
 const clienteController = require('../controllers/restapi-cliente')();
 const authenticationController = require('../controllers/restapi-authentication')();
+const cryptoService = require('../services/crypto-service')();
 
 const asyncMiddleware = fn => (req, res, next) => {
   Promise.resolve(fn(req, res, next))
@@ -12,7 +13,7 @@ const verifyJWT = async (req, res, next) => {
   const token = await Promise.resolve(req.headers['x-access-token']);
   if (!token) return res.status(401).json({ auth: false, message: 'Token de autenticação não fornecido.' });
 
-  await Promise.resolve(jwt.verify(token, process.env.SECRET, function (err, decoded) {
+  await Promise.resolve(jwt.verify(token, cryptoService.getkey(), function (err, decoded) {
     if (err) return res.status(401).json({ auth: false, message: 'Falha de autenticação' });
 
     // se tudo estiver ok, salva no request para uso posterior

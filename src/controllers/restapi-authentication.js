@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
-const { use } = require('../routers/router');
 const Usuario = require('../schema/usuario-schema');
 const usuarioRepository = require('../repository/usuario-repository')();
+const cryptoService = require('../services/crypto-service')();
 //const Usuario = require('../schema/usuario-schema');
 
 const authenticationController = () => {
@@ -24,13 +24,15 @@ const authenticationController = () => {
                 await usuarioRepository.usuario(user, usuario => {
                     if (usuario !== null) {
 
-                        const token = jwt.sign({ usuario }, process.env.SECRET, {
+                        const token = jwt.sign({ usuario }, cryptoService.getkey(), {
                             expiresIn: 300, // expires in 5min
                             algorithm: 'HS512'
                         });
                         return res.status(200).json({ auth: true, token: token });
                     }
-                });
+                    else
+                    res.status(200).json({ auth: false, message: 'Falha de autenticação' })
+                });                
         } catch (e) {
             next(e)
         }

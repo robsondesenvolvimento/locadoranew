@@ -1,4 +1,6 @@
-const crypto = require("crypto");
+//const crypto = require("crypto");
+const fs = require('fs');
+require('buffer');
 
 const cryptoService = () => {
 
@@ -26,6 +28,12 @@ const cryptoService = () => {
       // cryptoServiceControllers.base64 = () => {
       //   return encryptedData.toString("base64");
       // }
+
+      cryptoServiceControllers.getkey = () => {
+        const keyPrivate = fs.readFileSync('./locadora.key');
+        var emBase64 = Buffer.from(keyPrivate).toString('base64');
+        return emBase64;
+      }
 
       return cryptoServiceControllers;
 }
