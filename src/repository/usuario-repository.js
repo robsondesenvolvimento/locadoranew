@@ -28,7 +28,7 @@ const usuarioRepository = () => {
         const listaUsuarios = await Usuario.find();
 
         if (listaUsuarios !== null) {
-            console.log(chalk.bgGreenBright(chalk.black("Lista de usuários.")));
+            //console.log(chalk.bgGreenBright(chalk.black("Lista de usuários.")));
             callback(listaUsuarios);
         }
     }
@@ -37,7 +37,7 @@ const usuarioRepository = () => {
         const listaUsuarios = await Usuario.find();
 
         if (listaUsuarios !== null) {
-            console.log(chalk.bgGreenBright(chalk.black("Lista de usuários.")));
+            //console.log(chalk.bgGreenBright(chalk.black("Lista de usuários.")));
             callback(listaUsuarios);
         }
     }
@@ -46,21 +46,19 @@ const usuarioRepository = () => {
         const usuario = await Usuario.findById(id).exec();
 
         if (usuario !== null) {
-            console.log(chalk.bgGreenBright(chalk.black("Usuário localizado.")));
+            //console.log(chalk.bgGreenBright(chalk.black("Usuário localizado.")));
             callback(usuario);
         }
     }
 
     controllerUsuarioRepository.usuario = async (usuario, callback) => {
-        const user = await Usuario.findOne(usuario).exec();
+        const user = await Usuario.findOne(usuario).exec();        
 
-        if (user !== null) {
-            console.log(chalk.bgGreenBright(chalk.black("Usuário localizado.")));
-            callback(user);
-        }
-        else {
-            callback(null);
-        }
+        if(user !== null){
+            //console.log(chalk.bgGreenBright(chalk.black("Usuário localizado.")));
+            return callback(user);
+        };
+        callback(null)
     }
 
     return controllerUsuarioRepository;

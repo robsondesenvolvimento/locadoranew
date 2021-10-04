@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 const { use } = require('../routers/router');
 const Usuario = require('../schema/usuario-schema');
 const usuarioRepository = require('../repository/usuario-repository')();
@@ -9,28 +10,30 @@ const authenticationController = () => {
     const authController = {};
 
     authController.getTodos = async (request, response, next) => {
-        try{
+        try {
             await usuarioRepository.all(usuario => response.status(200).json(usuario));
-        }catch(e){
+        } catch (e) {
             next(e)
-        }            
+        }
     }
 
     authController.usuarioauth = async (req, res, next) => {
-        try{
+        try {
             var user = req.body;
-            await usuarioRepository.usuario(user, usuario => {
-                if (usuario !== null)
-                    res.status(200).json(usuario);
-                else
-                    res.status(401).json({ statusCode: "ERR0001", message: "Acesso negado." });
-            });
+            if (user.hasOwnProperty('username') && user.hasOwnProperty('password'))
+                await usuarioRepository.usuario(user, usuario => {
+                    if (usuario !== null) {
 
-            //var texto = await Promise.resolve(`corpo: ${req.body}`).catch(next);
-            //await res.status(200).json(texto)
-        }catch(e){
+                        const token = jwt.sign({ usuario }, process.env.SECRET, {
+                            expiresIn: 300, // expires in 5min
+                            algorithm: 'HS512'
+                        });
+                        return res.status(200).json({ auth: true, token: token });
+                    }
+                });
+        } catch (e) {
             next(e)
-        }         
+        }
     }
 
     return authController;
