@@ -52,3 +52,5 @@ $ docker run -p 3000:3000 -d locadora
  - > https://expressjs.com/pt-br/guide/routing.html
  - > https://www.luiztools.com.br/post/autenticacao-json-web-token-jwt-em-nodejs/
  - > https://www.sohamkamani.com/nodejs/rsa-encryption/
+ - > https://blog.logrocket.com/node-js-crypto-module-a-tutorial/
+ - > https://www.techengineer.one/how-to-encrypt-decrypt-strings-with-rsa-in-node-js/

@@ -25,7 +25,7 @@ const authenticationController = () => {
                     if (usuario !== null) {
 
                         const token = jwt.sign({ usuario }, cryptoService.getkey(), {
-                            expiresIn: 300, // expires in 5min
+                            expiresIn: '30m', // expires in 5min
                             algorithm: 'HS512'
                         });
                         return res.status(200).json({ auth: true, token: token });

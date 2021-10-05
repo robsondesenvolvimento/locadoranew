@@ -23,6 +23,17 @@ const clienteController = () => {
         }              
     }
 
+    clienteController.insert = async (request, response, next) => {
+        try{
+            const clie = request.body;
+
+            await clienteRepository.insertClient(clie, cliente => response.status(200).json(cliente));
+            //var texto = await Promise.resolve("TODOS - Cliente").catch(next);
+        }catch(e){
+            next(e)
+        }              
+    }
+
     return clienteController;
 }
 
