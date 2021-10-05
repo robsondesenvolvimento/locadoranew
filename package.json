@@ -4,8 +4,8 @@
   "description": "Projeto de apresentação do curso de Node.Js Avançado.",
   "main": "index.js",
   "scripts": {
-    "start-dev": "NODE_ENV=dev SECRET=LocadoraSecret2021 nodemon src/index.js",
-    "start-prod": "NODE_ENV=prod SECRET=LocadoraSecret2021 nodemon src/index.js"
+    "start-dev": "NODE_ENV=dev SECRET=LocadoraSecret2021 node rsa_keygenerator.js && nodemon src/index.js",
+    "start-prod": "NODE_ENV=prod SECRET=LocadoraSecret2021 node rsa_keygenerator.js && nodemon src/index.js"
   },
   "repository": {
     "type": "git",

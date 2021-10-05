@@ -10,7 +10,10 @@ const asyncMiddleware = fn => (req, res, next) => {
 };
 
 const verifyJWT = async (req, res, next) => {
-  const token = await Promise.resolve(req.headers['x-access-token']);
+  const token = await Promise.resolve(req.headers.authorization)
+    .then(authHeader => authHeader.split(' ')[1])
+    .catch(x => req.headers['x-access-token']);
+
   if (!token) return res.status(401).json({ auth: false, message: 'Token de autenticação não fornecido.' });
 
   await Promise.resolve(jwt.verify(token, cryptoService.getkey(), function (err, decoded) {
@@ -27,6 +30,8 @@ routing.post('/login', asyncMiddleware(authenticationController.usuarioauth));
 
 // Cliente
 routing.get('/cliente', asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.getTodos));
+routing.post('/cliente', asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.insert))
 routing.get('/cliente/:id', asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.id));
+
 
 module.exports = routing;

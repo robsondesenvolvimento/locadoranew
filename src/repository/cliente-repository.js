@@ -34,16 +34,22 @@ const clienteRepository = () => {
         const listaClientes = await Cliente.find();
 
         if (listaClientes !== null) {
-            console.log(chalk.bgGreenBright(chalk.black("Lista de clientes.")));
+            //console.log(chalk.bgGreenBright(chalk.black("Lista de clientes.")));
             callback(listaClientes);
         }
+    }
+
+    controllerClienteRepository.insertClient = async(cliente, callback) => {
+        var cliente = await Cliente(cliente);
+        const clieS = await cliente.save();
+        callback(clieS);
     }
 
     controllerClienteRepository.all = async (callback) => {
         const listaClientes = await Cliente.find();
 
         if (listaClientes !== null) {
-            console.log(chalk.bgGreenBright(chalk.black("Lista de clientes.")));
+            //console.log(chalk.bgGreenBright(chalk.black("Lista de clientes.")));
             callback(listaClientes);
         }
     }
@@ -52,7 +58,7 @@ const clienteRepository = () => {
         const cliente = await Cliente.findById(id).exec();
 
         if (cliente !== null) {
-            console.log(chalk.bgGreenBright(chalk.black("Cliente localizado.")));
+            //console.log(chalk.bgGreenBright(chalk.black("Cliente localizado.")));
             callback(cliente);
         }
     }
