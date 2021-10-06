@@ -41,6 +41,20 @@ const clienteController = () => {
         }
     }
 
+    clienteController.delete = async (request, response, next) => {
+        try {
+            const id = request.params.id;
+            await clienteRepository.deleteClient(id, cliente => {
+                if (cliente)
+                    response.status(204).json("")
+                else
+                    response.status(404).json("");
+            });
+        }catch(e) {
+            next(e);
+        }
+    }
+
     return clienteController;
 }
 

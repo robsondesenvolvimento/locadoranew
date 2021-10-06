@@ -52,6 +52,11 @@ const clienteRepository = () => {
         callback(clienteUpdate);
     }
 
+    controllerClienteRepository.deleteClient = async(id, callback) => {
+        await Cliente.findByIdAndRemove({ _id: id});
+        callback(true);
+    }
+
     controllerClienteRepository.all = async (callback) => {
         const listaClientes = await Cliente.find();
 

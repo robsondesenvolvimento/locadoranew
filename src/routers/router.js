@@ -33,6 +33,7 @@ routing.get('/cliente', asyncMiddleware(verifyJWT), asyncMiddleware(clienteContr
 routing.get('/cliente/:id', asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.id));
 routing.post('/cliente', asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.insert));
 routing.put('/cliente', asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.update));
+routing.delete('/cliente/:id', asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.delete));
 
 
 module.exports = routing;
