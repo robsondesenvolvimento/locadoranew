@@ -30,8 +30,9 @@ routing.post('/login', asyncMiddleware(authenticationController.usuarioauth));
 
 // Cliente
 routing.get('/cliente', asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.getTodos));
-routing.post('/cliente', asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.insert))
 routing.get('/cliente/:id', asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.id));
+routing.post('/cliente', asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.insert));
+routing.put('/cliente', asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.update));
 
 
 module.exports = routing;

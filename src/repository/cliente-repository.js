@@ -45,6 +45,13 @@ const clienteRepository = () => {
         callback(clieS);
     }
 
+    controllerClienteRepository.updateClient = async(cliente, callback) => {
+        let clienteUpdate = await Cliente.findOneAndUpdate({ _id: cliente._id }, cliente, {
+            returnOriginal: false
+          });
+        callback(clienteUpdate);
+    }
+
     controllerClienteRepository.all = async (callback) => {
         const listaClientes = await Cliente.find();
 
