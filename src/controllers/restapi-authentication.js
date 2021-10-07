@@ -32,7 +32,7 @@ const authenticationController = () => {
                     }
                     else
                     res.status(200).json({ auth: false, message: 'Falha de autenticação' })
-                });                
+                });               
         } catch (e) {
             next(e)
         }

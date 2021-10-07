@@ -29,12 +29,14 @@ const verifyJWT = async (req, res, next) => {
 routing.post('/login', asyncMiddleware(authenticationController.usuarioauth));
 
 // Cliente
-routing.get('/cliente', asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.getTodos));
+routing.get(/.*cliente\/?$/, asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.getTodos));
+routing.get(/.*cliente\/download\/?$/, asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.downloadFile));
 routing.get('/cliente/:id', asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.id));
-routing.post('/cliente', asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.insert));
-routing.put('/cliente', asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.update));
+routing.post(/.*cliente\/?$/, asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.insert));
+routing.put(/.*cliente\/?$/, asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.update));
 routing.delete('/cliente/:id', asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.delete));
-routing.post('/cliente/upload', asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.upload));
+routing.post(/.*cliente\/upload\/?$/, asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.uploadFile));
+
 
 
 module.exports = routing;
