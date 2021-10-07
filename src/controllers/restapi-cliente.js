@@ -57,35 +57,30 @@ const clienteController = () => {
         }
     }
 
-    clienteController.upload = async (request, response, next) => {
-        //return response.json(request.files.file);
-        const sampleFile = request.files.file;
-        uploadPath = 'src/upload/' + sampleFile.name;
-        sampleFile.mv(uploadPath, function(err) {
-            if (err)
-              return response.status(500).send(err);
-        
-            response.send('File uploaded!');
-          });
-        //let caminho = tempFilePath.replace('\\', '/');
-        //caminho = caminho.replace('\\\\', '/');
-        //return response.json(tempFilePath);
-        //var arquivoStream = fs.createReadStream(`../${tempFilePath}`);
-        //arquivoStream.on('open', () => arquivoStream.pipe(response));
-        // const form = new formidable.IncomingForm();
+    clienteController.uploadFile = async (request, response, next) => {
+        try {
+            const sampleFile = request.files.file;
+            uploadPath = 'src/upload/' + sampleFile.name;
+            sampleFile.mv(uploadPath, function(err) {
+                if (err)
+                return response.status(500).send(err);
+            
+                response.send('File uploaded!');
+            });
+        }catch(e) {
+            next(e);
+        }
+    }
 
-        // form.parse(request, (err, fields, files) => {
-        //     if (err) {
-        //         next(err);
-        //         return;
-        //     }
-
-        //     const { type, name, path, size } = files.file
-
-        //     var arquivoStream = fs.createReadStream(path)
-        //     arquivoStream.on('open', () => arquivoStream.pipe(response));
-        //     //response.json({ fields, files });
-        //});
+    clienteController.downloadFile = async (request, response, next) => {
+        try {
+            const fileName = request.query.fileName;
+            let uploadPath = 'src/upload/' + fileName;
+            var arquivoStream = fs.createReadStream(uploadPath);
+            arquivoStream.on('open', () => arquivoStream.pipe(response));
+        }catch(e) {
+            next(e);
+        }
     }
 
     return clienteController;
