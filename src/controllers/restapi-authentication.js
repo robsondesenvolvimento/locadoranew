@@ -31,8 +31,8 @@ const authenticationController = () => {
                         return res.status(200).json({ auth: true, token: token });
                     }
                     else
-                    res.status(200).json({ auth: false, message: 'Falha de autenticação' })
-                });               
+                        res.status(200).json({ auth: false, message: 'Falha de autenticação' })
+                });
         } catch (e) {
             next(e)
         }

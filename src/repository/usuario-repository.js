@@ -4,9 +4,9 @@ const chalk = require('chalk');
 
 const usuarioRepository = () => {
 
-    const controllerUsuarioRepository = {};    
+    const controllerUsuarioRepository = {};
 
-    controllerUsuarioRepository.seeding = async (callback) => {        
+    controllerUsuarioRepository.seeding = async (callback) => {
 
         var existeUsuario = await Usuario.exists();
 
@@ -28,7 +28,6 @@ const usuarioRepository = () => {
         const listaUsuarios = await Usuario.find();
 
         if (listaUsuarios !== null) {
-            //console.log(chalk.bgGreenBright(chalk.black("Lista de usuários.")));
             callback(listaUsuarios);
         }
     }
@@ -37,7 +36,6 @@ const usuarioRepository = () => {
         const listaUsuarios = await Usuario.find();
 
         if (listaUsuarios !== null) {
-            //console.log(chalk.bgGreenBright(chalk.black("Lista de usuários.")));
             callback(listaUsuarios);
         }
     }
@@ -46,23 +44,20 @@ const usuarioRepository = () => {
         const usuario = await Usuario.findById(id).exec();
 
         if (usuario !== null) {
-            //console.log(chalk.bgGreenBright(chalk.black("Usuário localizado.")));
             callback(usuario);
         }
     }
 
     controllerUsuarioRepository.usuario = async (usuario, callback) => {
-        const user = await Usuario.findOne(usuario).exec();        
+        const user = await Usuario.findOne(usuario).exec();
 
-        if(user !== null){
-            //console.log(chalk.bgGreenBright(chalk.black("Usuário localizado.")));
+        if (user !== null) {
             return callback(user);
         };
         callback(null)
     }
 
     return controllerUsuarioRepository;
-
 }
 
 module.exports = usuarioRepository;

@@ -19,7 +19,6 @@ const verifyJWT = async (req, res, next) => {
   await Promise.resolve(jwt.verify(token, cryptoService.getkey(), function (err, decoded) {
     if (err) return res.status(401).json({ auth: false, message: 'Falha de autenticação' });
 
-    // se tudo estiver ok, salva no request para uso posterior
     req.userId = decoded.id;
     next();
   }));
@@ -36,7 +35,5 @@ routing.post(/.*cliente\/?$/, asyncMiddleware(verifyJWT), asyncMiddleware(client
 routing.put(/.*cliente\/?$/, asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.update));
 routing.delete('/cliente/:id', asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.delete));
 routing.post(/.*cliente\/upload\/?$/, asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.uploadFile));
-
-
 
 module.exports = routing;
