@@ -34,6 +34,7 @@ routing.get('/cliente/:id', asyncMiddleware(verifyJWT), asyncMiddleware(clienteC
 routing.post('/cliente', asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.insert));
 routing.put('/cliente', asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.update));
 routing.delete('/cliente/:id', asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.delete));
+routing.post('/cliente/upload', asyncMiddleware(verifyJWT), asyncMiddleware(clienteController.upload));
 
 
 module.exports = routing;

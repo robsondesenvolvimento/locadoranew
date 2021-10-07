@@ -1,4 +1,5 @@
 const express = require('express');
+const fileUpload = require('express-fileupload');
 const routing = require('../routers/router');
 const configuration = require('../config/configuration');
 const chalk = require('chalk');
@@ -25,6 +26,14 @@ const restapi = () => {
 
     const app = express();
     app.use(express.json());
+
+    app.use(fileUpload({
+      //useTempFiles: true,
+      tempFileDir: './tmp/',
+      safeFileNames: true, 
+      createParentPath: true,
+      preserveExtension: true
+    }));
     
     const { host } = configuration.express;
     const { port } = configuration.express;
