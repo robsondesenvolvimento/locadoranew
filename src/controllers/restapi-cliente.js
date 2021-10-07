@@ -1,3 +1,5 @@
+const fs = require('fs');
+const formidable = require('formidable');
 const clienteRepository = require('../repository/cliente-repository')();
 
 const clienteController = () => {
@@ -53,6 +55,37 @@ const clienteController = () => {
         }catch(e) {
             next(e);
         }
+    }
+
+    clienteController.upload = async (request, response, next) => {
+        //return response.json(request.files.file);
+        const sampleFile = request.files.file;
+        uploadPath = 'src/upload/' + sampleFile.name;
+        sampleFile.mv(uploadPath, function(err) {
+            if (err)
+              return response.status(500).send(err);
+        
+            response.send('File uploaded!');
+          });
+        //let caminho = tempFilePath.replace('\\', '/');
+        //caminho = caminho.replace('\\\\', '/');
+        //return response.json(tempFilePath);
+        //var arquivoStream = fs.createReadStream(`../${tempFilePath}`);
+        //arquivoStream.on('open', () => arquivoStream.pipe(response));
+        // const form = new formidable.IncomingForm();
+
+        // form.parse(request, (err, fields, files) => {
+        //     if (err) {
+        //         next(err);
+        //         return;
+        //     }
+
+        //     const { type, name, path, size } = files.file
+
+        //     var arquivoStream = fs.createReadStream(path)
+        //     arquivoStream.on('open', () => arquivoStream.pipe(response));
+        //     //response.json({ fields, files });
+        //});
     }
 
     return clienteController;
