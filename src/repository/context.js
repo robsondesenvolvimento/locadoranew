@@ -12,7 +12,9 @@ const uri = `mongodb://${username}:${password}@${host}/${namedb}?retryWrites=tru
 
 var conn = mongoose.connect(uri, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 30000
+}, 60000)
+.catch(err => console.log(err));
 
 module.exports = conn;

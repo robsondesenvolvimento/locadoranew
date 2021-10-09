@@ -1,0 +1,24 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+  locadora:
+    container_name: locadora-robson
+    build: '.'
+    image: locadora
+    restart: always
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=prod
+    depends_on:
+      - mongo
+    links:
+      - mongo
+    #  - VIRTUAL_HOST=locadora.robson.localhost
+    #  - VIRTUAL_PORT=9000
+      
+#networks:
+#  default:
+#    name: nginxproxy
+#    external: true

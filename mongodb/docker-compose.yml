@@ -10,12 +10,7 @@ services:
       - 27017:27017
     volumes:
       - mongodata:/data/db
-    #command: [--auth]
-      
-networks:
-  default:
-    name: nginxproxy
-    external: true
+    command: [--auth]
     
 volumes:
   mongodata:

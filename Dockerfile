@@ -8,7 +8,8 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY package-prod.json ./package.json
 
-RUN npm install
+RUN npm install --save
+#RUN npm install mongoose --save --quiet
 # If you are building your code for production
 # RUN npm ci --only=production
 
@@ -16,4 +17,5 @@ RUN npm install
 COPY . .
 
 EXPOSE 3000
-CMD ["node", "src/index.js" ]
+CMD [ "node", "rsa_keygenerator.js" ]
+CMD [ "node", "src/index.js" ]
