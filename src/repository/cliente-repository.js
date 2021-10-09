@@ -4,9 +4,9 @@ const chalk = require('chalk');
 
 const clienteRepository = () => {
 
-    const controllerClienteRepository = {};    
+    const controllerClienteRepository = {};
 
-    controllerClienteRepository.seeding = async (callback) => {        
+    controllerClienteRepository.seeding = async (callback) => {
 
         var existeCliente = await Cliente.exists();
 
@@ -39,21 +39,21 @@ const clienteRepository = () => {
         }
     }
 
-    controllerClienteRepository.insertClient = async(cliente, callback) => {
+    controllerClienteRepository.insertClient = async (cliente, callback) => {
         var cliente = await Cliente(cliente);
         const clieS = await cliente.save();
         callback(clieS);
     }
 
-    controllerClienteRepository.updateClient = async(cliente, callback) => {
+    controllerClienteRepository.updateClient = async (cliente, callback) => {
         let clienteUpdate = await Cliente.findOneAndUpdate({ _id: cliente._id }, cliente, {
             returnOriginal: false
-          });
+        });
         callback(clienteUpdate);
     }
 
-    controllerClienteRepository.deleteClient = async(id, callback) => {
-        await Cliente.findByIdAndRemove({ _id: id});
+    controllerClienteRepository.deleteClient = async (id, callback) => {
+        await Cliente.findByIdAndRemove({ _id: id });
         callback(true);
     }
 

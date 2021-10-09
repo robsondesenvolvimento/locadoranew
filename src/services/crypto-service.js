@@ -4,16 +4,14 @@ require('buffer');
 
 const cryptoService = () => {
 
-    const cryptoServiceControllers = {};    
+  const cryptoServiceControllers = {};
 
-      cryptoServiceControllers.getkey = () => {
-        const keyPrivate = fs.readFileSync('./locadora_rsa.key');
-        return keyPrivate;
-        //var emBase64 = Buffer.from(keyPrivate, 'base64');
-        //return emBase64;
-      }
+  cryptoServiceControllers.getkey = () => {
+    const keyPrivate = fs.readFileSync('./locadora_rsa.key');
+    return keyPrivate;
+  }
 
-      return cryptoServiceControllers;
+  return cryptoServiceControllers;
 }
 
 module.exports = cryptoService;

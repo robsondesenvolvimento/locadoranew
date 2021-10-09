@@ -9,9 +9,9 @@ const clienteController = () => {
     clienteController.getTodos = async (request, response, next) => {
         try {
             await clienteRepository.all(cliente => response.status(200).json(cliente));
-        }catch(e){
+        } catch (e) {
             next(e)
-        }              
+        }
     }
 
     clienteController.id = async (request, response, next) => {
@@ -19,9 +19,9 @@ const clienteController = () => {
             const id = request.params.id;
             await clienteRepository.id(id, cliente => response.status(200).json(cliente));
             //var texto = await Promise.resolve("TODOS - Cliente").catch(next);
-        }catch(e){
+        } catch (e) {
             next(e)
-        }              
+        }
     }
 
     clienteController.insert = async (request, response, next) => {
@@ -29,16 +29,16 @@ const clienteController = () => {
             const clie = request.body;
             await clienteRepository.insertClient(clie, cliente => response.status(201).json(cliente));
             //var texto = await Promise.resolve("TODOS - Cliente").catch(next);
-        }catch(e){
+        } catch (e) {
             next(e)
-        }              
+        }
     }
 
     clienteController.update = async (request, response, next) => {
         try {
             const clie = request.body;
             await clienteRepository.updateClient(clie, cliente => response.status(200).json(cliente));
-        }catch(e) {
+        } catch (e) {
             next(e);
         }
     }
@@ -52,7 +52,7 @@ const clienteController = () => {
                 else
                     response.status(404).json("");
             });
-        }catch(e) {
+        } catch (e) {
             next(e);
         }
     }
@@ -61,13 +61,13 @@ const clienteController = () => {
         try {
             const sampleFile = request.files.file;
             uploadPath = 'src/upload/' + sampleFile.name;
-            sampleFile.mv(uploadPath, function(err) {
+            sampleFile.mv(uploadPath, function (err) {
                 if (err)
-                return response.status(500).send(err);
-            
+                    return response.status(500).send(err);
+
                 response.send('File uploaded!');
             });
-        }catch(e) {
+        } catch (e) {
             next(e);
         }
     }
@@ -78,7 +78,7 @@ const clienteController = () => {
             let uploadPath = 'src/upload/' + fileName;
             var arquivoStream = fs.createReadStream(uploadPath);
             arquivoStream.on('open', () => arquivoStream.pipe(response));
-        }catch(e) {
+        } catch (e) {
             next(e);
         }
     }
