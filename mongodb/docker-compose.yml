@@ -10,7 +10,7 @@ services:
       - 27017:27017
     volumes:
       - mongodata:/data/db
-    command: [--auth]
+    #command: [--auth]
     
 volumes:
   mongodata:
